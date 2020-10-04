@@ -1,9 +1,10 @@
 package view;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import models.FileService;
-import controllers.Logger;
+import models.Logger;
 
 public class Terminal {
 
@@ -53,9 +54,7 @@ public class Terminal {
         
         } else if(input == 2) {
           // List specific files
-          System.out.print("Enter extension: ");
-          String stringInput = scanner.next();
-          listFiles(stringInput);
+          listFiles(promptedInput("Enter extension", false));
           pressToContinue();
 
         } else if(input == 3) {
@@ -82,7 +81,7 @@ public class Terminal {
             System.out.print("Enter file name: ");
             file = validateFileExist(scanner.next());
           }
-          System.out.println(fileService.getFileSize(fileFolder + "/" + file));
+          System.out.println(formatSize(fileService.getFileSize(fileFolder + "/" + file)));
           pressToContinue();
           
         } else if(input == 5) {
@@ -123,6 +122,23 @@ public class Terminal {
         }
       }
     }
+  }
+
+  private String promptedInput(String msg, boolean validateFile) {
+     try(Scanner scanner = new Scanner(System.in)) {
+       String input = null;
+        while(input == null) {
+          System.out.print(msg + ": ");
+          input = scanner.next();
+          if(validateFile) {
+            input = validateFileExist(input);
+          }
+          if(input != null) {
+            return input;
+          }
+        }
+     }
+     return null;
   }
 
   private String validateFileExist(String input) {
@@ -168,21 +184,16 @@ public class Terminal {
     logger.stop();
   }
 
-  private void getFileSize() {
-    var result = new FileService().getFileSize("assets/JavaCodingPack-0.3.10.exe");
-    System.out.println(result);
-  }
-      
-  private void getLines() {
-    var result = new FileService().getNrOfLines("assets/Dracula.txt");
-    System.out.println(result + " lines");
-  }
-  
-  private void search() {
-    logger.start();
-    var result = new FileService().getWordOccurences("assets/Dracula.txt", "in");
-    System.out.println("The term \"in\" was found " + result + " times");
-    logger.stop();
+  private String formatSize(long bytes) {
+    var units = new String[]{ "B", "kB", "MB", "GB" };
+    int divisions = 0;
+    double size = bytes;
 
+    while(size / 1024.0 > 1) {
+      size /= 1024.0;
+      divisions ++;
+    }   
+
+    return new DecimalFormat("#.#").format(size) + " " + units[divisions];
   }
 }

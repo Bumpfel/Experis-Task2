@@ -1,4 +1,4 @@
-package controllers;
+package models;
 
 import java.util.Date;
 
@@ -10,17 +10,18 @@ public class Logger {
   private static String loggerColour = "\u001B[33m";
   private static String resetColour = "\u001B[0m";
 
-  public void start() {
+  public String start() {
     time = System.currentTimeMillis();
-    System.out.print(loggerColour + new Date(time) + ": " + resetColour);
     isStarted = true;
+    return loggerColour + new Date(time) + ": " + resetColour;
   }
   
-  public void stop() {
+  public String stop() {
     if(isStarted) {
       long timeTaken = System.currentTimeMillis() - time;
-      System.out.println(loggerColour + "The function executed in " + timeTaken + " ms" + resetColour);
       isStarted = false;
+      return loggerColour + "The function executed in " + timeTaken + " ms" + resetColour;
     }
+    return "A stop() logger call was made, but the logger wasn't started";
   }
 }
