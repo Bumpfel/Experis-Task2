@@ -101,3 +101,8 @@ Mon Oct 05 21:35:48 CEST 2020: The file has 15973 lines. The function executed i
 Mon Oct 05 21:36:01 CEST 2020: The word "dracula" exists in the file "drac". The function executed in 734 ms
 Mon Oct 05 21:36:07 CEST 2020: The word "dracula" exists 38 times in the file. The function executed in 276 ms
 Mon Oct 05 21:36:17 CEST 2020: File "drac" were successfully renamed to "dracula.txt". The function executed in 2 ms
+Tue Oct 06 13:21:35 CEST 2020: The size of "Meme_1.jpeg" is 62,6 kB. The function executed in 43 ms
+Tue Oct 06 13:23:02 CEST 2020: The size of "Meme_1.jpeg" is 62,6 kB. The function executed in 32 ms
+Tue Oct 06 13:31:35 CEST 2020: The word "dracula" does not exist in the file. The function executed in 386 ms
+Tue Oct 06 13:33:32 CEST 2020: The word "dracula" does not exist in the file. The function executed in 172 ms
+Tue Oct 06 13:35:24 CEST 2020: The word "dracula" exists 43 times in the file. The function executed in 169 ms

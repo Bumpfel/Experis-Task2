@@ -17,7 +17,7 @@ public class Terminal {
     LIST_FILES("List files"),
     LIST_FILES_BY_EXT("List files by extension"),
     RENAME_FILE("Rename file"),
-    GET_FILE_SIZE("Get text file size"),
+    GET_FILE_SIZE("Get file size"),
     GET_LINES("Get nr of lines"),
     SEARCH_WORD("Search for word"),
     COUNT_WORD("Count words"),

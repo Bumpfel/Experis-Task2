@@ -70,8 +70,8 @@ public class FileService {
       int occurrences = 0;
 
       while(scanner.hasNext()) {
-        String word = scanner.next().replaceAll("[^a-zA-Z]", "");
-        occurrences += word.equalsIgnoreCase(searchWord) ? 1 : 0;
+        String word = scanner.next().toLowerCase();
+        occurrences += word.contains(searchWord.toLowerCase()) ? 1 : 0;
       }
       return occurrences;
     } catch(Exception e) {
