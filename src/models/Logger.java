@@ -1,27 +1,52 @@
 package models;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Date;
 
 public class Logger {
   
-  private long time;
+  private long startTime;
   private boolean isStarted = false;
+  private FileWriter fileWriter;
+  
+  public Logger() {
+    File logFile = new File("logs/executed-commands.txt");
+    try {
+      if(!logFile.exists()) {
+        logFile.createNewFile();
+      }
 
-  private static String loggerColour = "\u001B[33m";
-  private static String resetColour = "\u001B[0m";
+      fileWriter = new FileWriter(logFile, true);
+    } catch(Exception e) {
+    }
+  }
 
-  public String start() {
-    time = System.currentTimeMillis();
+  public void start() {
+    startTime = System.currentTimeMillis();
     isStarted = true;
-    return loggerColour + new Date(time) + ": " + resetColour;
   }
   
-  public String stop() {
+  /**
+   * Stops the logger if the logger is started and prints msg to log file
+   * @param msg The message that is printed to the log file in addition to the timestamp and execution tim
+   * @return time between start() and stop() method calls
+   * @throws RuntimeException if an attempt is made to stop the logger when it isn't running. 
+   */
+  public long stop(String msg) throws RuntimeException {
     if(isStarted) {
-      long timeTaken = System.currentTimeMillis() - time;
+      long timestamp = System.currentTimeMillis();
+      long timeTaken = timestamp - startTime;
       isStarted = false;
-      return loggerColour + "The function executed in " + timeTaken + " ms" + resetColour;
+      try {
+        fileWriter.append(new Date(timestamp) + ": " + msg + ". The function executed in " + timeTaken + " ms\n");
+        fileWriter.flush();
+      } catch(Exception e) {
+      }
+      return timeTaken;
     }
-    return "A stop() logger call was made, but the logger wasn't started";
+    throw new RuntimeException("A stop() logger call was made, but the logger wasn't started");
   }
+
+
 }

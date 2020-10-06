@@ -1,0 +1,103 @@
+Mon Oct 05 15:53:42 CEST 2020: File successfully renamed. The function executed in 23 ms
+Mon Oct 05 15:53:45 CEST 2020: The size of "1" is 862,5 kB. The function executed in 2 ms
+Mon Oct 05 15:53:53 CEST 2020: File successfully renamed. The function executed in 23 ms
+Mon Oct 05 15:53:57 CEST 2020: The file has 15973 lines. The function executed in 123 ms
+Mon Oct 05 16:03:45 CEST 2020: The word "dracula" does not exist in the file. The function executed in 335 ms
+Mon Oct 05 16:04:41 CEST 2020: The word "dracula" does not exist in the file. The function executed in 202 ms
+Mon Oct 05 16:05:26 CEST 2020: The word "dracula" does not exist in the file. The function executed in 338 ms
+Mon Oct 05 16:05:32 CEST 2020: The word "dracula" does not exist in the file. The function executed in 183 ms
+Mon Oct 05 16:05:53 CEST 2020: The word "dracula" exists in the file. The function executed in 330 ms
+Mon Oct 05 16:05:58 CEST 2020: The word "dracula" exists in the file. The function executed in 209 ms
+Mon Oct 05 16:08:00 CEST 2020: The file has 15973 lines. The function executed in 135 ms
+Mon Oct 05 16:08:05 CEST 2020: The word "dracula" does not exist in the file. The function executed in 322 ms
+Mon Oct 05 16:08:12 CEST 2020: The word "dracula" does not exist in the file. The function executed in 170 ms
+Mon Oct 05 16:10:22 CEST 2020: . The function executed in 418 ms
+Mon Oct 05 16:10:27 CEST 2020: . The function executed in 441 ms
+Mon Oct 05 16:10:30 CEST 2020: . The function executed in 380 ms
+Mon Oct 05 16:10:33 CEST 2020: . The function executed in 432 ms
+Mon Oct 05 16:10:37 CEST 2020: . The function executed in 438 ms
+Mon Oct 05 16:10:51 CEST 2020: . The function executed in 395 ms
+Mon Oct 05 16:12:50 CEST 2020: . The function executed in 411 ms
+Mon Oct 05 16:12:50 CEST 2020: . The function executed in 232 ms
+Mon Oct 05 16:12:50 CEST 2020: . The function executed in 131 ms
+Mon Oct 05 16:12:50 CEST 2020: . The function executed in 119 ms
+Mon Oct 05 16:12:50 CEST 2020: . The function executed in 143 ms
+Mon Oct 05 16:12:51 CEST 2020: . The function executed in 113 ms
+Mon Oct 05 16:12:51 CEST 2020: . The function executed in 117 ms
+Mon Oct 05 16:12:51 CEST 2020: . The function executed in 115 ms
+Mon Oct 05 16:12:51 CEST 2020: . The function executed in 161 ms
+Mon Oct 05 16:12:51 CEST 2020: . The function executed in 115 ms
+Mon Oct 05 16:13:08 CEST 2020: . The function executed in 398 ms
+Mon Oct 05 16:13:08 CEST 2020: . The function executed in 243 ms
+Mon Oct 05 16:13:08 CEST 2020: . The function executed in 125 ms
+Mon Oct 05 16:13:08 CEST 2020: . The function executed in 122 ms
+Mon Oct 05 16:13:09 CEST 2020: . The function executed in 138 ms
+Mon Oct 05 16:13:09 CEST 2020: . The function executed in 124 ms
+Mon Oct 05 16:13:09 CEST 2020: . The function executed in 120 ms
+Mon Oct 05 16:13:09 CEST 2020: . The function executed in 148 ms
+Mon Oct 05 16:13:09 CEST 2020: . The function executed in 129 ms
+Mon Oct 05 16:13:09 CEST 2020: . The function executed in 117 ms
+Mon Oct 05 16:13:13 CEST 2020: . The function executed in 466 ms
+Mon Oct 05 16:13:13 CEST 2020: . The function executed in 203 ms
+Mon Oct 05 16:13:13 CEST 2020: . The function executed in 144 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 125 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 157 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 118 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 123 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 113 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 145 ms
+Mon Oct 05 16:13:14 CEST 2020: . The function executed in 110 ms
+Mon Oct 05 16:16:19 CEST 2020: File successfully renamed. The function executed in 1 ms
+Mon Oct 05 16:16:30 CEST 2020: The size of "dracula.txt" is 862,5 kB. The function executed in 2 ms
+Mon Oct 05 16:16:35 CEST 2020: The file has 15973 lines. The function executed in 121 ms
+Mon Oct 05 16:16:46 CEST 2020: The word "dracula" exists in the file. The function executed in 317 ms
+Mon Oct 05 16:16:52 CEST 2020: The word "dracula" exists 38 times in the file. The function executed in 181 ms
+Mon Oct 05 17:54:57 CEST 2020: File successfully renamed. The function executed in 0 ms
+Mon Oct 05 17:56:14 CEST 2020: File rename failed. The function executed in 1 ms
+Mon Oct 05 17:56:27 CEST 2020: File successfully renamed. The function executed in 2 ms
+Mon Oct 05 17:56:47 CEST 2020: The size of "dracula.txt" is 862,5 kB. The function executed in 3 ms
+Mon Oct 05 17:58:00 CEST 2020: File successfully renamed. The function executed in 0 ms
+Mon Oct 05 17:58:08 CEST 2020: The size of "test" is 85 B. The function executed in 0 ms
+Mon Oct 05 17:58:14 CEST 2020: The file has 2 lines. The function executed in 18 ms
+Mon Oct 05 17:58:23 CEST 2020: The file has 0 lines or is not a text file. The function executed in 0 ms
+Mon Oct 05 17:58:36 CEST 2020: The word "word" does not exist in the file. The function executed in 0 ms
+Mon Oct 05 18:39:02 CEST 2020: File rename failed. The function executed in 0 ms
+Mon Oct 05 18:47:48 CEST 2020: File rename failed. The function executed in 0 ms
+Mon Oct 05 18:48:32 CEST 2020: File rename failed. The function executed in 0 ms
+Mon Oct 05 19:05:50 CEST 2020: The size of "null" is 0 B. The function executed in 0 ms
+Mon Oct 05 19:32:20 CEST 2020: File "test" could not be renamed. The function executed in 0 ms
+Mon Oct 05 19:32:32 CEST 2020: File "test" could not be renamed. The function executed in 3 ms
+Mon Oct 05 19:32:39 CEST 2020: File "test" were successfully renamed to test2. The function executed in 2 ms
+Mon Oct 05 19:32:47 CEST 2020: File "test2" were successfully renamed to test.txt. The function executed in 6 ms
+Mon Oct 05 19:33:21 CEST 2020: The size of "test.txt" is 85 B. The function executed in 0 ms
+Mon Oct 05 19:34:03 CEST 2020: The size of "test.txt" is 85 B. The function executed in 0 ms
+Mon Oct 05 19:34:41 CEST 2020: File "test.txt" were successfully renamed to 1. The function executed in 3 ms
+Mon Oct 05 19:35:13 CEST 2020: The size of "1" is 85 B. The function executed in 0 ms
+Mon Oct 05 19:36:28 CEST 2020: The size of "1" is 85 B. The function executed in 0 ms
+Mon Oct 05 19:38:16 CEST 2020: File "1" could not be renamed. The function executed in 3 ms
+Mon Oct 05 19:38:24 CEST 2020: File "1" were successfully renamed to test. The function executed in 6 ms
+Mon Oct 05 19:39:17 CEST 2020: File "test" were successfully renamed to "1. The function executed in 0 ms
+Mon Oct 05 19:39:47 CEST 2020: File "1" could not be renamed. The function executed in 3 ms
+Mon Oct 05 19:39:52 CEST 2020: File "1" were successfully renamed to "test". The function executed in 5 ms
+Mon Oct 05 19:40:01 CEST 2020: The size of "test" is 85 B. The function executed in 0 ms
+Mon Oct 05 19:40:07 CEST 2020: The size of "Meme_1.jpeg" is 62,6 kB. The function executed in 0 ms
+Mon Oct 05 19:40:13 CEST 2020: The file has 2 lines. The function executed in 16 ms
+Mon Oct 05 19:40:20 CEST 2020: The file has 15973 lines. The function executed in 162 ms
+Mon Oct 05 19:40:41 CEST 2020: The file has 0 lines or is not a text file. The function executed in 0 ms
+Mon Oct 05 19:41:47 CEST 2020: The file has 0 lines or is not a text file. The function executed in 1 ms
+Mon Oct 05 19:41:57 CEST 2020: The file has 0 lines or is not a text file. The function executed in 11 ms
+Mon Oct 05 19:42:50 CEST 2020: The word "asd" does not exist in the file. The function executed in 0 ms
+Mon Oct 05 19:43:50 CEST 2020: The file has 2 lines. The function executed in 20 ms
+Mon Oct 05 19:43:54 CEST 2020: The file has 0 lines or is not a text file. The function executed in 1 ms
+Mon Oct 05 19:44:06 CEST 2020: The word "test" does not exist in the file "JavaCodingPack-0.3.10.exe". The function executed in 3 ms
+Mon Oct 05 19:44:23 CEST 2020: The word "1" does not exist in the file "JavaCodingPack-0.3.10.exe". The function executed in 0 ms
+Mon Oct 05 19:44:32 CEST 2020: The word "test" does not exist in the file. The function executed in 1 ms
+Mon Oct 05 19:46:09 CEST 2020: The word "test" exists 8 times in the file. The function executed in 6 ms
+Mon Oct 05 19:46:34 CEST 2020: The word "1" does not exist in the file "test". The function executed in 1 ms
+Mon Oct 05 19:46:47 CEST 2020: The word "dracula" exists 38 times in the file. The function executed in 496 ms
+Mon Oct 05 21:35:31 CEST 2020: File "dracula.txt" were successfully renamed to "drac". The function executed in 0 ms
+Mon Oct 05 21:35:44 CEST 2020: The size of "drac" is 862,5 kB. The function executed in 4 ms
+Mon Oct 05 21:35:48 CEST 2020: The file has 15973 lines. The function executed in 193 ms
+Mon Oct 05 21:36:01 CEST 2020: The word "dracula" exists in the file "drac". The function executed in 734 ms
+Mon Oct 05 21:36:07 CEST 2020: The word "dracula" exists 38 times in the file. The function executed in 276 ms
+Mon Oct 05 21:36:17 CEST 2020: File "drac" were successfully renamed to "dracula.txt". The function executed in 2 ms

@@ -2,7 +2,6 @@ package view;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Scanner;
 import models.FileService;
 import models.Logger;
 
@@ -11,177 +10,223 @@ public class Terminal {
   private static String resetColour = "\u001B[0m";
   private static String errorColour = "\u001B[31m";
   private static String successColour = "\u001B[32m";
+  private static String systemColour = "\u001B[36m";
+
+  private enum MENU_OPTIONS { 
+    EXIT("Exit"),
+    LIST_FILES("List files"),
+    LIST_FILES_BY_EXT("List files by extension"),
+    RENAME_FILE("Rename file"),
+    GET_FILE_SIZE("Get text file size"),
+    GET_LINES("Get nr of lines"),
+    SEARCH_WORD("Search for word"),
+    COUNT_WORD("Count words"),
+    ;
+
+    public String title;
+
+    private MENU_OPTIONS(String title) {
+      this.title = title;
+    }
+  };
 
   Logger logger = new Logger();
   FileService fileService = new FileService();
   String fileFolder = "assets";
   
   public void run() {
-    
-    try(Scanner scanner = new Scanner(System.in)) {
-      while(true) {
-        Integer input = null;
-        
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("---------------------");
-        System.out.println("--  Program Start  --");
-        System.out.println("---------------------");
-        System.out.println("1. List files");
-        System.out.println("2. List files by extension");
-        System.out.println("3. Rename file");
-        System.out.println("4. Get text file size");
-        System.out.println("5. Get nr of lines");
-        System.out.println("6. Search for word");
-        System.out.println("7. Count words");
-        System.out.println("0. Exit");
-        
-        while(input == null) {
-          System.out.print(": ");
-          input = selectedOption(scanner.next(), 7);
+    while(true) {
+      MENU_OPTIONS input = null;
+      
+      while(input == null) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("--------------");
+        System.out.println("---  Menu  ---");
+        System.out.println("--------------");
+        for (int i = 1; i < MENU_OPTIONS.values().length; i++) {
+          System.out.println(i + ". " + MENU_OPTIONS.values()[i].title);
         }
-        
-        System.out.println();
+        System.out.println("0. " + MENU_OPTIONS.values()[0].title);
 
-        if(input == 0) {
-          // Exit app
-          System.out.println("Goodbye!");
-          System.exit(0);
-       
-        } else if(input == 1) {
-          // List all files
-          listFiles("");
-          pressToContinue();
-        
-        } else if(input == 2) {
-          // List specific files
-          listFiles(promptedInput("Enter extension", false));
-          pressToContinue();
+        input = selectedOption(promptedInput(""));
+      }
+      System.out.println();
 
-        } else if(input == 3) {
-          // Rename file
-          String fileToRename = null;
-          while(fileToRename == null) {
-            System.out.print("Enter file you want to rename: ");
-            fileToRename = validateFileExist(scanner.next());
+      if(input == MENU_OPTIONS.EXIT) {
+        printSystemMsg("Goodbye!");
+        System.exit(0);
+      
+      } else if(input == MENU_OPTIONS.LIST_FILES) {
+        printSystemMsg("Listing files");
+        String files = listFiles("");
+        System.out.println(files);
+      
+      } else if(input == MENU_OPTIONS.LIST_FILES_BY_EXT) {
+        String extensionInput = promptedInput("Enter extension");
+        if(extensionInput.isBlank()) {
+          continue;
+        }
+        printSystemMsg("Listing files with extension \"" + extensionInput + "\"");
+        String files = listFiles(extensionInput);
+        System.out.println(files);
+
+      } else if(input == MENU_OPTIONS.RENAME_FILE) {
+        String fileToRename = fileInputPrompt("Enter file you want to rename");
+        if(fileToRename == null) {
+          continue;
+        }
+        String newFileName = promptedInput("Enter new file name");
+        
+        logger.start();
+        boolean renameStatus = fileService.rename(fileFolder + "/" + fileToRename, fileFolder + "/" + newFileName);
+        String msg = "File \"" + fileToRename + "\"" + (renameStatus ? " were successfully renamed to \"" + newFileName + "\"" : " could not be renamed");
+        logger.stop(msg);
+        printFeedbackMsg(msg, renameStatus ? false : true);
+
+      } else if(input == MENU_OPTIONS.GET_FILE_SIZE) {
+        String fileInput = fileInputPrompt(null);
+        if(fileInput == null) {
+          continue;
+        }
+        logger.start();
+        long size = fileService.getFileSize(fileFolder + "/" + fileInput);
+        String msg = "The size of \"" + fileInput + "\" is " + formatSize(size);
+        logger.stop(msg);
+        printSystemMsg(msg);
+        
+      } else if(input == MENU_OPTIONS.GET_LINES) {
+        String fileInput = fileInputPrompt(null);
+        if(fileInput == null) {
+          continue;
+        }
+        logger.start();
+        int lines = fileService.getNrOfLines(fileFolder + "/" + fileInput);
+        String msg = lines > 0 ? "The file has " + lines + " lines" : "The file has 0 lines or is not a text file";
+        logger.stop(msg);
+        printSystemMsg(msg);
+        
+      } else if(input == MENU_OPTIONS.SEARCH_WORD) {
+        String fileInput = fileInputPrompt(null);
+        if(fileInput == null) {
+          continue;
+        }
+        String word = promptedInput("Search for a word");
+        if(word.isBlank()) {
+          continue;
+        }
+        logger.start();
+        String msg = "The word \"" + word + "\" " + (fileService.getWordOccurences(fileFolder + "/" + fileInput, word) > 0 ? "exists" : "does not exist") + " in the file \"" + fileInput + "\"";
+        logger.stop(msg);
+        printSystemMsg(msg);
+
+      } else if(input == MENU_OPTIONS.COUNT_WORD) {
+        Integer lines = 0;
+        String fileInput = null;
+        fileInput = fileInputPrompt(null);
+        if(fileInput == null) {
+          continue;
+        }
+        lines = fileService.getNrOfLines(fileFolder + "/" + fileInput);
+        if(lines == 0) {
+          printFeedbackMsg("This file is not searchable since it doesn't contain any lines", true);
+        } else {
+          String word = promptedInput("Search for a word");
+          if(word.isBlank()) {
+            continue;
           }
-          
-          System.out.print("Enter new file name: ");
-          String stringInput2 = scanner.next();
           
           logger.start();
-          boolean renameStatus = fileService.rename(fileFolder + "/" + fileToRename, fileFolder + "/" + stringInput2);
-          printMsg("File " + (renameStatus ? "successfully renamed" : "rename failed"), renameStatus ? false : true);
-          logger.stop();
-          pressToContinue();
-
-        } else if(input == 4) {
-          // Get file size          
-          String file = null;
-          while(file == null) {
-            System.out.print("Enter file name: ");
-            file = validateFileExist(scanner.next());
-          }
-          System.out.println(formatSize(fileService.getFileSize(fileFolder + "/" + file)));
-          pressToContinue();
-          
-        } else if(input == 5) {
-          // Get lines
-          String file = null;
-          while(file == null) {
-            System.out.print("Enter file name: ");
-            file = validateFileExist(scanner.next());
-          }
-          System.out.println(fileService.getNrOfLines(file));
-          pressToContinue();
-          
-        } else if(input == 6) {
-          // Search for word
-          String file = null;
-          while(file == null) {
-            System.out.print("Enter file name: ");
-            file = validateFileExist(scanner.next());
-          }
-          System.out.print("Search for a word: ");
-          String word = scanner.next();
-          System.out.println("The word " + word + " " + (fileService.getWordOccurences(fileFolder + "/" + file, word) > 0 ? "exists" : "does not exist") + " in the file");
-          pressToContinue();
-          
-        } else if(input == 7) {
-          // Count words
-          String file = null;
-          while(file == null) {
-            System.out.print("Enter file name: ");
-            file = validateFileExist(scanner.next());
-          }
-          System.out.print("Search for a word: ");
-          String word = scanner.next();
-          int occurrences = fileService.getWordOccurences(fileFolder + "/" + file, word);
-          System.out.println("The word " + word + (occurrences > 0 ? " exists " + occurrences + " times" : " does not exist") + " in the file");
-          pressToContinue();
-          
+          int occurrences = fileService.getWordOccurences(fileFolder + "/" + fileInput, word);
+          String msg = "The word \"" + word + "\"" + (occurrences > 0 ? " exists " + occurrences + " times" : " does not exist") + " in the file";
+          logger.stop(msg);
+          printSystemMsg(msg);
         }
       }
+
+      printSystemMsg("\nPress enter key to continue...");
+      try {
+        System.in.read();
+      } catch(IOException e) {}
     }
   }
 
-  private String promptedInput(String msg, boolean validateFile) {
-     try(Scanner scanner = new Scanner(System.in)) {
-       String input = null;
-        while(input == null) {
-          System.out.print(msg + ": ");
-          input = scanner.next();
-          if(validateFile) {
-            input = validateFileExist(input);
-          }
-          if(input != null) {
-            return input;
-          }
-        }
-     }
-     return null;
-  }
+  /**
+   * Prints msg and prompts for user input
+   * Allows detection of empty line breaks (user pressing enter) which can be used to go back in the menu
+   */
+  private String promptedInput(String msg) {
+    System.out.print(msg + ": ");
 
-  private String validateFileExist(String input) {
-    if(!fileService.fileExists(fileFolder + "/" + input)) {
-      printMsg("The file does not exist", true);
+    try {
+      System.in.read(new byte[System.in.available()]); // consume potential leftovers in stdin
+      StringBuilder str = new StringBuilder();
+      int data;
+      do {
+        data = System.in.read();
+        str.append((char) data);
+      } while(data != 10); // if newline, end
+      return str.toString().trim();
+    } catch(IOException e) {
       return null;
     }
-    return input;
   }
-    
-  private void printMsg(String msg, boolean erroneous) {
+
+  private MENU_OPTIONS selectedOption(String input) {
+    try {
+      int option = Integer.parseInt(input);
+      if(option >= 0 && option <= MENU_OPTIONS.values().length) {
+        return MENU_OPTIONS.values()[option];
+      }
+    } catch(Exception e) {}
+    if(!input.isBlank()) {
+      printFeedbackMsg("Erroneous input", true);
+    }
+    return null; // user did not enter any input
+  }
+
+  /**
+   * Prompts for input until a valid file name has been given (or user sent empty input)
+   * @param customMsg Provide a custom msg if desired, otherwise if null, a default one will be used
+   * @return
+   */
+  private String fileInputPrompt(String customMsg) {
+    String input = null;
+    do {
+      input = promptedInput(customMsg != null ? customMsg : "Enter file name");
+      if(input.trim().isEmpty()) {
+        return null;
+      }
+    } while(!validateFileExist(input));
+    return input.trim();
+  }
+
+  private boolean validateFileExist(String input) {    
+    if(!fileService.fileExists(fileFolder + "/" + input)) {
+      printFeedbackMsg("The file does not exist", true);
+      return false;
+    }
+    return true;
+  }
+
+  private void printFeedbackMsg(String msg, boolean erroneous) {
     System.out.println((erroneous ? errorColour : successColour) + msg + resetColour);
   }
 
-  
-  private void pressToContinue() {
-    System.out.print("\nPress enter key to continue...");
-    try {
-      System.in.read();
-    } catch(IOException e) {
-    }
+  private void printSystemMsg(String msg) {
+    System.out.println(systemColour + msg + resetColour);
   }
 
-  private Integer selectedOption(String input, int lastOption) {
-    try {
-      int option = Integer.parseInt(input);
-      if(option >= 0 && option <= lastOption) {
-        return option;
-      }
-    } catch(Exception e) {}
-    printMsg("Erroneous input", true);
-    return null;
-  }
-
-  private void listFiles(String extension) {
-    logger.start();
-    System.out.println("Listing files" + (extension.length() > 0 ? " with extension \"" + extension + "\"" : ""));
-    
+  private String listFiles(String extension) {
+   StringBuilder fileList = new StringBuilder();
     String[] files = fileService.getFiles(fileFolder, extension);
-    for (String file : files) {
-      System.out.println(file);
+    if(files == null) {
+      printFeedbackMsg("Asset folder does not exist", true);
     }
-    logger.stop();
+
+    for (String file : files) {
+      fileList.append(file + "\n");
+    }
+    return fileList.substring(0, fileList.length() -1);
   }
 
   private String formatSize(long bytes) {

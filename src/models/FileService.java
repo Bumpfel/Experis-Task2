@@ -2,7 +2,6 @@ package models;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class FileService {
@@ -15,7 +14,7 @@ public class FileService {
       String[] foundDirectories = searchDirectory.list(filter);
 
       return foundDirectories;
-    } catch(NullPointerException e) {
+    } catch(Exception e) {
       return null;
     }
   }
@@ -67,10 +66,11 @@ public class FileService {
   }
 
   public Integer getWordOccurences(String fileName, String searchWord) {
-    try(Scanner scanner = new Scanner(new File(fileName))) { 
+    try(Scanner scanner = new Scanner(new File(fileName))) {
       int occurrences = 0;
+
       while(scanner.hasNext()) {
-        String word = scanner.next();
+        String word = scanner.next().replaceAll("[^a-zA-Z]", "");
         occurrences += word.equalsIgnoreCase(searchWord) ? 1 : 0;
       }
       return occurrences;
